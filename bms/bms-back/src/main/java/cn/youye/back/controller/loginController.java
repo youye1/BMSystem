@@ -26,9 +26,8 @@ public class loginController {
         User user = new User();
         user.setLoginName(request.getParameter("loginName"));
         user.setDelFlag("0");
-        List<User> users = userService.findAllList();
+        List<User> users = userService.get(user);
         if (users != null && users.size() > 0) {
-            model.addAttribute("user",users.get(0));
             return "modules/test/success";
         } else {
             return "modules/test/failed";
