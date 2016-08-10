@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by pc on 2016/8/10.
  */
-public class DataEntity {
+public class DataEntity<T> {
     private static Logger logger = LoggerFactory.getLogger(DataEntity.class);
 
     private static final long serialVersionUID = 1L;
