@@ -6,6 +6,7 @@ import cn.youye.back.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -73,6 +74,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 
         if ((entity.getId()).equals("") || entity.getId() == null) {
             entity.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+            entity.setCreateDate(new Date());
             dao.insert(entity);
         } else {
             dao.update(entity);

@@ -1,6 +1,7 @@
 package cn.youye.back.entity;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
 
@@ -100,7 +101,7 @@ public class Book extends DataEntity<Book> {
 		this.count = count;
 	}
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JSONField(format = "yyyy-MM-dd")
 	public Date getPrintDate() {
 		return printDate;
 	}

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,6 +65,7 @@ public class BookController extends BaseController {
         if (StringUtils.isBlank(book.getPrice())) {
             book.setPrice(null);
         }
+        book.setUpdateDate(new Date());
         bookService.save(book);
         addMessage(redirectAttributes, "保存单表成功");
         return "redirect:" + "/book/?repage";

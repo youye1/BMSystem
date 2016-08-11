@@ -1,7 +1,10 @@
 package cn.youye.back.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 
@@ -15,6 +18,7 @@ public abstract class DataEntity<T> extends BaseEntity<T> {
 //    private String id;              //实体编号
     protected String remarks;    // 备注
     protected String createBy;    // 创建者
+
     protected Date createDate;    // 创建日期
     protected String updateBy;    // 更新者
     protected Date updateDate;    // 更新日期
@@ -30,14 +34,19 @@ public abstract class DataEntity<T> extends BaseEntity<T> {
     }
 
 
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     public Date getCreateDate() {
         return createDate;
     }
+
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     public Date getUpdateDate() {
         return updateDate;
     }
@@ -46,6 +55,7 @@ public abstract class DataEntity<T> extends BaseEntity<T> {
         this.updateDate = updateDate;
     }
 
+    @JsonIgnore
     public String getCreateBy() {
         return createBy;
     }
@@ -54,6 +64,7 @@ public abstract class DataEntity<T> extends BaseEntity<T> {
         this.createBy = createBy;
     }
 
+    @JsonIgnore
     public String getUpdateBy() {
         return updateBy;
     }
@@ -62,6 +73,7 @@ public abstract class DataEntity<T> extends BaseEntity<T> {
         this.updateBy = updateBy;
     }
 
+    @JsonIgnore
     public String getDelFlag() {
         return delFlag;
     }
@@ -70,6 +82,8 @@ public abstract class DataEntity<T> extends BaseEntity<T> {
         this.delFlag = delFlag;
     }
 
+    @JsonIgnore
+    @Length(min = 1, max = 1)
     public String getRemarks() {
         return remarks;
     }

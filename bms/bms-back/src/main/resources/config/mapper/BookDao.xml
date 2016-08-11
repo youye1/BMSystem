@@ -16,8 +16,8 @@
 		a.description AS "description",
 		a.create_date AS "createDate",
 		a.update_date AS "updateDate",
-		a.create_by AS "createBy.id",
-		a.update_by AS "updateBy.id",
+		a.create_by AS "createBy",
+		a.update_by AS "updateBy",
 		a.del_flag AS "delFlag",
 		a.remarks AS "remarks"
 	</sql>
@@ -105,8 +105,8 @@
 			#{description},
 			#{createDate},
 			#{updateDate},
-			#{createBy.id},
-			#{updateBy.id},
+			#{createBy},
+			#{updateBy},
 			#{delFlag},
 			#{remarks}
 		)
@@ -125,7 +125,7 @@
 			imgurl = #{imgurl},
 			description = #{description},
 			update_date = #{updateDate},
-			update_by = #{updateBy.id},
+			update_by = #{updateBy},
 			remarks=#{remarks}
 		WHERE id = #{id}
 	</update>

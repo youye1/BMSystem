@@ -58,6 +58,7 @@ public abstract class BaseController {
 
     /**
      * 服务端参数有效性验证
+     *
      * @param object 验证的实体对象
      * @param groups 验证组
      * @return 验证成功：返回true；严重失败：将错误信息添加到 message 中
@@ -76,6 +77,7 @@ public abstract class BaseController {
 
     /**
      * 服务端参数有效性验证
+     *
      * @param object 验证的实体对象
      * @param groups 验证组
      * @return 验证成功：返回true；严重失败：将错误信息添加到 flash message 中
@@ -104,24 +106,26 @@ public abstract class BaseController {
 
     /**
      * 添加Model消息
-     * @param message
+     *
+     * @param messages
      */
     protected void addMessage(Model model, String... messages) {
         StringBuilder sb = new StringBuilder();
-        for (String message : messages){
-            sb.append(message).append(messages.length>1?"<br/>":"");
+        for (String message : messages) {
+            sb.append(message).append(messages.length > 1 ? "<br/>" : "");
         }
         model.addAttribute("message", sb.toString());
     }
 
     /**
      * 添加Flash消息
-     * @param message
+     *
+     * @param messages
      */
     protected void addMessage(RedirectAttributes redirectAttributes, String... messages) {
         StringBuilder sb = new StringBuilder();
-        for (String message : messages){
-            sb.append(message).append(messages.length>1?"<br/>":"");
+        for (String message : messages) {
+            sb.append(message).append(messages.length > 1 ? "<br/>" : "");
         }
         redirectAttributes.addFlashAttribute("message", sb.toString());
     }
@@ -138,6 +142,7 @@ public abstract class BaseController {
 
     /**
      * 客户端返回字符串
+     *
      * @param response
      * @param string
      * @return
@@ -183,6 +188,7 @@ public abstract class BaseController {
             public void setAsText(String text) {
                 setValue(text == null ? null : StringEscapeUtils.escapeHtml4(text.trim()));
             }
+
             @Override
             public String getAsText() {
                 Object value = getValue();
