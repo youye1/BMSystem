@@ -2,68 +2,73 @@ package cn.youye.back.controller;
 
 import cn.youye.back.entity.Book;
 import cn.youye.back.service.BookService;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import org.apache.log4j.Logger;
+import cn.youye.back.utils.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.List;
 
 /**
  * Created by pc on 2016/7/25.
  */
 @Controller
 @RequestMapping("/book")
-public class BookController {
-
-    private static Logger logger = Logger.getLogger(BookController.class);
+public class BookController extends BaseController{
 
     @Autowired
     private BookService bookService;
 
-    @RequestMapping("/save")
-    public String save(Model model) {
-        List<Book> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Book book = new Book();
-            book.setId(UUID.randomUUID().toString());
-            book.setName("雨季不再来" + i);
-            book.setAuthor("三毛");
-            bookService.save(book);
+    @ModelAttribute
+    public Book get(@RequestParam(required=false) String id) {
+        Book entity = null;
+        if (StringUtils.isNotBlank(id)){
+            entity = bookService.get(id);
         }
-        model.addAttribute("msg", "hello");
-        logger.debug("123333333333");
-        return "modules/test/test1";
+        if (entity == null){
+            entity = new Book();
+        }
+        return entity;
     }
 
-    @ResponseBody
-    @RequestMapping("/findList")
-    public JSONArray findAll() {
-        List<Book> list = bookService.findBook();
-        return null;
+    @RequestMapping(value = {"list", ""})
+    public String list(Book book, HttpServletRequest request, HttpServletResponse response, Model model) {
+//        Page<Book> page = bookService.findPage(new Page<Book>(request, response), book);
+//        model.addAttribute("page", page);
+        List<Book> list=bookService.findList(book);
+        model.addAttribute("list",list);
+        return "modules/book/bookList";
     }
 
-    @ResponseBody
-    @RequestMapping("/findList2")
-    public Map<String, Object> findAll2(HttpServletResponse response) {
-        response.setContentType("application/json");
-        Map<String, Object> map = new HashMap<>();
-        List<Book> list = bookService.findBook();
-        map.put("data", JSONObject.toJSON(list));
-        return map;
+    @RequestMapping(value = "form")
+    public String form(Book book, Model model) {
+        model.addAttribute("book", book);
+        return "modules/book/bookForm";
     }
 
-    @ResponseBody
-    @RequestMapping("/get")
-    public Book get() {
-        String id = "9a92a147-a64c-4dad-80de-a6112a2ab179";
-        return bookService.get(id);
+    @RequestMapping(value = "save")
+    public String save(Book book, Model model, RedirectAttributes redirectAttributes) {
+        if (!beanValidator(model, book)){
+            return form(book, model);
+        }
+        bookService.save(book);
+        addMessage(redirectAttributes, "保存单表成功");
+        return "redirect:"+"/book/?repage";
     }
+
+    @RequestMapping(value = "delete")
+    public String delete(Book book, RedirectAttributes redirectAttributes) {
+        bookService.delete(book);
+        addMessage(redirectAttributes, "删除单表成功");
+        return "redirect:"+"/book/?repage";
+    }
+
 
 }

@@ -28,9 +28,10 @@ public class loginController {
         user.setDelFlag("0");
         List<User> users = userService.get(user);
         if (users != null && users.size() > 0) {
-            return "modules/test/success";
+            return "redirect:"+"/book/list?repage";
         } else {
-            return "modules/test/failed";
+            model.addAttribute("msg", "登录出错");
+            return "modules/sys/login";
         }
     }
 
