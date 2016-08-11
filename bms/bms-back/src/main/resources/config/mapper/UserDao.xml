@@ -24,7 +24,7 @@
     <select id="get" resultType="User">
         SELECT
         <include refid="userColumns"/>
-        FROM user a
+        FROM sys_user a
         <include refid="userJoins"/>
         WHERE a.id = #{id}
     </select>
@@ -32,7 +32,7 @@
     <select id="findList" resultType="User">
         SELECT
         <include refid="userColumns"/>
-        FROM user a
+        FROM sys_user a
         <include refid="userJoins"/>
         <where>
             a.del_flag = #{DEL_FLAG_NORMAL}
@@ -50,7 +50,7 @@
     <select id="findAllList" resultType="User">
         SELECT
         <include refid="userColumns"/>
-        FROM user a
+        FROM sys_user a
         <include refid="userJoins"/>
         <where>
             a.del_flag = #{DEL_FLAG_NORMAL}
@@ -95,7 +95,7 @@
 	</insert>
 
     <update id="update">
-		UPDATE user SET 	
+		UPDATE sys_user SET
 			name = #{name},
 			password = #{password},
 			user_name = #{userName},
@@ -109,7 +109,7 @@
 	</update>
 
     <update id="delete">
-		UPDATE user SET 
+		UPDATE sys_user SET
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
