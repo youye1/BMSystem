@@ -1,15 +1,12 @@
 package cn.youye.back.dao;
 
 import cn.youye.back.entity.User;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-@Repository("userDao")
-public interface UserDao {
-
-    List<User> findAllList();
-
-    List<User> get(User user);
-
+/**
+ * 单表DAO接口
+ * @author Youye
+ * @version 2016-08-11
+ */
+public interface UserDao extends CrudDao<User> {
+	
 }

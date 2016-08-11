@@ -30,10 +30,10 @@
                 <h2 align="center">欢迎登陆后台</h2>
 
                 <div class="form-group">
-                    <label class="input-lable" for="loginName">
+                    <label class="input-lable" for="userName">
                         登录名
                     </label>
-                    <input type="text" id="loginName" name="loginName" value="${loginName}"
+                    <input type="text" id="userName" name="userName" value="${userName}"
                            class="input-block-level required"/>
                 </div>
                 <div class="form-group">

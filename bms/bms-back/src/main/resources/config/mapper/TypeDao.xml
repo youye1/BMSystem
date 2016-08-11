@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.youye.back.dao.UserDao">
+<mapper namespace="cn.youye.back.dao.TypeDao">
 
-    <sql id="userColumns">
+    <sql id="typeColumns">
 		a.id AS "id",
 		a.name AS "name",
-		a.password AS "password",
-		a.user_name AS "userName",
-		a.phone AS "phone",
+		a.parent_id AS "parent.id",
 		a.create_date AS "createDate",
 		a.update_date AS "updateDate",
 		a.create_by AS "createBy.id",
 		a.update_by AS "updateBy.id",
-		a.imgurl AS "imgurl",
-		a.introduction AS "introduction",
 		a.del_flag AS "delFlag",
 		a.remarks AS "remarks"
 	</sql>
 
-    <sql id="userJoins">
+    <sql id="typeJoins">
     </sql>
 
-    <select id="get" resultType="User">
+    <select id="get" resultType="Type">
         SELECT
-        <include refid="userColumns"/>
-        FROM user a
-        <include refid="userJoins"/>
+        <include refid="typeColumns"/>
+        FROM type a
+        <include refid="typeJoins"/>
         WHERE a.id = #{id}
     </select>
 
-    <select id="findList" resultType="User">
+    <select id="findList" resultType="Type">
         SELECT
-        <include refid="userColumns"/>
-        FROM user a
-        <include refid="userJoins"/>
+        <include refid="typeColumns"/>
+        FROM type a
+        <include refid="typeJoins"/>
         <where>
             a.del_flag = #{DEL_FLAG_NORMAL}
             <if test="name != null and name != ''">
@@ -41,21 +37,23 @@
             </if>
         </where>
         <choose>
+
             <otherwise>
                 ORDER BY a.update_date DESC
             </otherwise>
         </choose>
     </select>
 
-    <select id="findAllList" resultType="User">
+    <select id="findAllList" resultType="Type">
         SELECT
-        <include refid="userColumns"/>
-        FROM user a
-        <include refid="userJoins"/>
+        <include refid="typeColumns"/>
+        FROM type a
+        <include refid="typeJoins"/>
         <where>
             a.del_flag = #{DEL_FLAG_NORMAL}
         </where>
         <choose>
+
             <otherwise>
                 ORDER BY a.update_date DESC
             </otherwise>
@@ -63,53 +61,41 @@
     </select>
 
     <insert id="insert">
-		INSERT INTO user(
+		INSERT INTO type(
 			id,
 			name,
-			password,
-			user_name,
-			phone,
+			parent_id,
 			create_date,
 			update_date,
 			create_by,
 			update_by,
-			imgurl,
-			introduction,
 			del_flag,
 			remarks
 		) VALUES (
 			#{id},
 			#{name},
-			#{password},
-			#{userName},
-			#{phone},
+			#{parent.id},
 			#{createDate},
 			#{updateDate},
 			#{createBy.id},
 			#{updateBy.id},
-			#{imgurl},
-			#{introduction},
 			#{delFlag},
 			#{remarks}
 		)
 	</insert>
 
     <update id="update">
-		UPDATE user SET 	
+		UPDATE type SET 	
 			name = #{name},
-			password = #{password},
-			user_name = #{userName},
-			phone = #{phone},
+			parent_id = #{parent.id},
 			update_date = #{updateDate},
 			update_by = #{updateBy.id},
-			imgurl = #{imgurl},
-			introduction = #{introduction},
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
 
     <update id="delete">
-		UPDATE user SET 
+		UPDATE type SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>

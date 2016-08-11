@@ -2,26 +2,36 @@ package cn.youye.back.service;
 
 import cn.youye.back.dao.UserDao;
 import cn.youye.back.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 /**
- * Created by pc on 2016/8/10.
+ * 单表Service
+ * @author Youye
+ * @version 2016-08-11
  */
 @Service
-public class UserService {
+@Transactional(readOnly = true)
+public class UserService extends CrudService<UserDao, User> {
 
-    @Autowired
-    UserDao userDao;
+	public User get(String id) {
+		return super.get(id);
+	}
+	
+	public List<User> findList(User user) {
+		return super.findList(user);
+	}
 
-    public List<User> findAllList() {
-
-        return userDao.findAllList();
-    }
-    public List<User> get(User user){
-        return userDao.get(user);
-    }
+	@Transactional(readOnly = false)
+	public void save(User user) {
+		super.save(user);
+	}
+	
+	@Transactional(readOnly = false)
+	public void delete(User user) {
+		super.delete(user);
+	}
+	
 }

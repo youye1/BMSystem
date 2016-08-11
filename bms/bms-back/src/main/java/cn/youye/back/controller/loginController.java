@@ -24,11 +24,11 @@ public class loginController {
     @RequestMapping(value = "/login")
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
         User user = new User();
-        user.setLoginName(request.getParameter("loginName"));
+        user.setName(request.getParameter("userName"));
         user.setDelFlag("0");
-        List<User> users = userService.get(user);
+        List<User> users = userService.findList(user);
         if (users != null && users.size() > 0) {
-            return "redirect:"+"/book/list?repage";
+            return "redirect:"+"/book/";
         } else {
             model.addAttribute("msg", "登录出错");
             return "modules/sys/login";
@@ -41,5 +41,4 @@ public class loginController {
         model.addAttribute("user", user);
         return "modules/sys/register";
     }
-
 }
