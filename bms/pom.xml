@@ -314,6 +314,14 @@
             <version>${cglib.version}</version>
         </dependency>
         <!--proxy end-->
+        <!--activiti start-->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <version>5.15.1</version>
+        </dependency>
+        <!--activiti start-->
+
 
         <dependency>
             <groupId>aopalliance</groupId>

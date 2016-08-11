@@ -2,16 +2,19 @@ package cn.youye.back.service;
 
 import cn.youye.back.dao.CrudDao;
 import cn.youye.back.entity.DataEntity;
+import cn.youye.back.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * Created by pc on 2016/8/10.
  */
 @Transactional(readOnly = true)
-public abstract class CrudService<D extends CrudDao<T>,T extends DataEntity<T>> extends BaseService {
+public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>> extends BaseService {
     /**
      * 持久层对象
      */
@@ -20,6 +23,7 @@ public abstract class CrudService<D extends CrudDao<T>,T extends DataEntity<T>> 
 
     /**
      * 获取单条数据
+     *
      * @param id
      * @return
      */
@@ -29,6 +33,7 @@ public abstract class CrudService<D extends CrudDao<T>,T extends DataEntity<T>> 
 
     /**
      * 获取单条数据
+     *
      * @param entity
      * @return
      */
@@ -38,6 +43,7 @@ public abstract class CrudService<D extends CrudDao<T>,T extends DataEntity<T>> 
 
     /**
      * 查询列表数据
+     *
      * @param entity
      * @return
      */
@@ -59,10 +65,18 @@ public abstract class CrudService<D extends CrudDao<T>,T extends DataEntity<T>> 
 
     /**
      * 保存数据（插入或更新）
+     *
      * @param entity
      */
     @Transactional(readOnly = false)
     public void save(T entity) {
+
+        if ((entity.getId()).equals("") || entity.getId() == null) {
+            entity.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+            dao.insert(entity);
+        } else {
+            dao.update(entity);
+        }
 
 //        if (entity.getIsNewRecord()){
 //            entity.preInsert();
@@ -75,6 +89,7 @@ public abstract class CrudService<D extends CrudDao<T>,T extends DataEntity<T>> 
 
     /**
      * 删除数据
+     *
      * @param entity
      */
     @Transactional(readOnly = false)

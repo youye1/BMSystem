@@ -18,7 +18,8 @@
 		a.update_date AS "updateDate",
 		a.create_by AS "createBy.id",
 		a.update_by AS "updateBy.id",
-		a.del_flag AS "delFlag"
+		a.del_flag AS "delFlag",
+		a.remarks AS "remarks"
 	</sql>
 	
 	<sql id="bookJoins">
@@ -88,7 +89,8 @@
 			update_date,
 			create_by,
 			update_by,
-			del_flag
+			del_flag,
+			remarks
 		) VALUES (
 			#{id},
 			#{name},
@@ -105,7 +107,8 @@
 			#{updateDate},
 			#{createBy.id},
 			#{updateBy.id},
-			#{delFlag}
+			#{delFlag},
+			#{remarks}
 		)
 	</insert>
 	
@@ -122,7 +125,8 @@
 			imgurl = #{imgurl},
 			description = #{description},
 			update_date = #{updateDate},
-			update_by = #{updateBy.id}
+			update_by = #{updateBy.id},
+			remarks=#{remarks}
 		WHERE id = #{id}
 	</update>
 	

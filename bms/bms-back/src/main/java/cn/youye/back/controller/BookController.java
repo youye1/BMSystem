@@ -21,18 +21,18 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/book")
-public class BookController extends BaseController{
+public class BookController extends BaseController {
 
     @Autowired
     private BookService bookService;
 
     @ModelAttribute
-    public Book get(@RequestParam(required=false) String id) {
+    public Book get(@RequestParam(required = false) String id) {
         Book entity = null;
-        if (StringUtils.isNotBlank(id)){
+        if (StringUtils.isNotBlank(id)) {
             entity = bookService.get(id);
         }
-        if (entity == null){
+        if (entity == null) {
             entity = new Book();
         }
         return entity;
@@ -42,8 +42,8 @@ public class BookController extends BaseController{
     public String list(Book book, HttpServletRequest request, HttpServletResponse response, Model model) {
 //        Page<Book> page = bookService.findPage(new Page<Book>(request, response), book);
 //        model.addAttribute("page", page);
-        List<Book> list=bookService.findList(book);
-        model.addAttribute("list",list);
+        List<Book> list = bookService.findList(book);
+        model.addAttribute("list", list);
         return "modules/book/bookList";
     }
 
@@ -55,19 +55,25 @@ public class BookController extends BaseController{
 
     @RequestMapping(value = "save")
     public String save(Book book, Model model, RedirectAttributes redirectAttributes) {
-        if (!beanValidator(model, book)){
+        if (!beanValidator(model, book)) {
             return form(book, model);
+        }
+        if (StringUtils.isBlank(book.getCount())) {
+            book.setCount(null);
+        }
+        if (StringUtils.isBlank(book.getPrice())) {
+            book.setPrice(null);
         }
         bookService.save(book);
         addMessage(redirectAttributes, "保存单表成功");
-        return "redirect:"+"/book/?repage";
+        return "redirect:" + "/book/?repage";
     }
 
     @RequestMapping(value = "delete")
     public String delete(Book book, RedirectAttributes redirectAttributes) {
         bookService.delete(book);
         addMessage(redirectAttributes, "删除单表成功");
-        return "redirect:"+"/book/?repage";
+        return "redirect:" + "/book/?repage";
     }
 
 
