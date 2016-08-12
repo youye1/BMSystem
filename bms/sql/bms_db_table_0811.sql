@@ -55,7 +55,7 @@ CREATE TABLE `type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE `user` (
+CREATE TABLE `sys_user` (
   `id` varchar(50) NOT NULL COMMENT '编号',
   `name` varchar(50) NOT NULL COMMENT '登录名',
   `password` varchar(50) NOT NULL COMMENT '密码',
@@ -84,4 +84,4 @@ insert into `type` (`id`, `name`, `parent_id`, `create_date`, `update_date`, `cr
 insert into `type` (`id`, `name`, `parent_id`, `create_date`, `update_date`, `create_by`, `update_by`, `del_flag`, `remarks`) values('7ccf3eff-5f61-11e6-a93b-408d5cc10d3b','文学',NULL,'2016-08-11 00:00:00','2016-08-11 00:00:00',NULL,NULL,'0',NULL);
 
 
-insert into `user` (`id`, `name`, `password`, `user_name`, `phone`, `create_date`, `update_date`, `create_by`, `update_by`, `imgUrl`, `introduction`, `del_flag`, `remarks`) values('111','youye','123456','youye',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL);
+insert into `sys_user` (`id`, `name`, `password`, `user_name`, `phone`, `create_date`, `update_date`, `create_by`, `update_by`, `imgUrl`, `introduction`, `del_flag`, `remarks`) values('111','youye','123456','youye',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL);
