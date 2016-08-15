@@ -5,6 +5,7 @@ package cn.youye.back.service;
 
 import cn.youye.back.dao.TypeDao;
 import cn.youye.back.entity.Type;
+import cn.youye.back.sys.common.CrudService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

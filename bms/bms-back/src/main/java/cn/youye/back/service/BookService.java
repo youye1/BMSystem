@@ -2,7 +2,8 @@ package cn.youye.back.service;
 
 import cn.youye.back.dao.BookDao;
 import cn.youye.back.entity.Book;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.youye.back.entity.Type;
+import cn.youye.back.sys.common.CrudService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ public class BookService extends CrudService<BookDao,Book> {
 
     @Transactional(readOnly = false)
     public void save(Book book) {
+        Type type=book.getType();
         super.save(book);
     }
 

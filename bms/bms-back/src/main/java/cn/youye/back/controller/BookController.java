@@ -2,8 +2,8 @@ package cn.youye.back.controller;
 
 import cn.youye.back.entity.Book;
 import cn.youye.back.service.BookService;
+import cn.youye.back.sys.common.BaseController;
 import cn.youye.back.utils.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

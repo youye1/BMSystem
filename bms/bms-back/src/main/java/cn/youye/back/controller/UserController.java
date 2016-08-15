@@ -2,6 +2,7 @@ package cn.youye.back.controller;
 
 import cn.youye.back.entity.User;
 import cn.youye.back.service.UserService;
+import cn.youye.back.sys.common.BaseController;
 import cn.youye.back.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

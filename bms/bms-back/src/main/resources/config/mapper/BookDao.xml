@@ -7,7 +7,7 @@
 		a.name AS "name",
 		a.author AS "author",
 		a.interpreter AS "interpreter",
-		a.type AS "type",
+		a.type AS "type.id",
 		a.publish AS "publish",
 		a.price AS "price",
 		a.count AS "count",
@@ -16,8 +16,8 @@
 		a.description AS "description",
 		a.create_date AS "createDate",
 		a.update_date AS "updateDate",
-		a.create_by AS "createBy",
-		a.update_by AS "updateBy",
+		a.create_by AS "createBy.id",
+		a.update_by AS "updateBy.id",
 		a.del_flag AS "delFlag",
 		a.remarks AS "remarks"
 	</sql>
@@ -96,7 +96,7 @@
 			#{name},
 			#{author},
 			#{interpreter},
-			#{type},
+			#{type.id},
 			#{publish},
 			#{price},
 			#{count},
@@ -105,8 +105,8 @@
 			#{description},
 			#{createDate},
 			#{updateDate},
-			#{createBy},
-			#{updateBy},
+			#{createBy.id},
+			#{updateBy.id},
 			#{delFlag},
 			#{remarks}
 		)
@@ -117,7 +117,7 @@
 			name = #{name},
 			author = #{author},
 			interpreter = #{interpreter},
-			type = #{type},
+			type = #{type.id},
 			publish = #{publish},
 			price = #{price},
 			count = #{count},
@@ -125,7 +125,7 @@
 			imgurl = #{imgurl},
 			description = #{description},
 			update_date = #{updateDate},
-			update_by = #{updateBy},
+			update_by = #{updateBy.id},
 			remarks=#{remarks}
 		WHERE id = #{id}
 	</update>

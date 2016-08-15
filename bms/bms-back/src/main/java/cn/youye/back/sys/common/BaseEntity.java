@@ -1,5 +1,6 @@
-package cn.youye.back.entity;
+package cn.youye.back.sys.common;
 
+import cn.youye.back.entity.User;
 import cn.youye.back.utils.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 

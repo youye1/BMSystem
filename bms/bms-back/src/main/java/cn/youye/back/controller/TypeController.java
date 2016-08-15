@@ -5,8 +5,8 @@ package cn.youye.back.controller;
 
 import cn.youye.back.entity.Type;
 import cn.youye.back.service.TypeService;
+import cn.youye.back.sys.common.BaseController;
 import cn.youye.back.utils.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

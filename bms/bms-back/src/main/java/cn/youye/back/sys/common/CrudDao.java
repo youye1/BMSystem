@@ -1,4 +1,4 @@
-package cn.youye.back.dao;
+package cn.youye.back.sys.common;
 
 import java.util.List;
 

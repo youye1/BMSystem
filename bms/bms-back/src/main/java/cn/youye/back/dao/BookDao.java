@@ -1,6 +1,7 @@
 package cn.youye.back.dao;
 
 import cn.youye.back.entity.Book;
+import cn.youye.back.sys.common.CrudDao;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -4,6 +4,7 @@
 package cn.youye.back.dao;
 
 import cn.youye.back.entity.Type;
+import cn.youye.back.sys.common.CrudDao;
 
 /**
  * 单表DAO接口

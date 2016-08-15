@@ -1,14 +1,10 @@
 package cn.youye.back.entity;
 
 
+import cn.youye.back.sys.common.DataEntity;
 import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -23,7 +19,7 @@ public class Book extends DataEntity<Book> {
 	private String name;		// 书名
 	private String author;		// 作者
 	private String interpreter;		// 译者
-	private String type;		// 类别
+	private Type type;		// 类别
 	private String publish;		// 出版社
 	private String price;		// 价格
 	private String count;		// 总页数
@@ -67,11 +63,11 @@ public class Book extends DataEntity<Book> {
 	}
 
 	@Length(min=1, max=50, message="类别长度必须介于 1 和 50 之间")
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 

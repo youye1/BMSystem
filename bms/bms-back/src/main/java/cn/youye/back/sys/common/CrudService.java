@@ -1,14 +1,10 @@
-package cn.youye.back.service;
+package cn.youye.back.sys.common;
 
-import cn.youye.back.dao.CrudDao;
-import cn.youye.back.entity.DataEntity;
-import cn.youye.back.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 /**

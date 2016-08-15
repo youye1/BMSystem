@@ -1,5 +1,6 @@
 package cn.youye.back.entity;
 
+import cn.youye.back.sys.common.DataEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.validator.constraints.Length;
 
