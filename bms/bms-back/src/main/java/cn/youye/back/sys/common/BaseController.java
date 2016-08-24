@@ -21,7 +21,6 @@ import javax.validation.Validator;
 import java.beans.PropertyEditorSupport;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by pc on 2016/8/10.
