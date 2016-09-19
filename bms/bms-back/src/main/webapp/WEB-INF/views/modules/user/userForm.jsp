@@ -31,7 +31,7 @@
 
     <ul class="nav nav-tabs">
         <li><a href="${ctx}/user/">单表列表</a></li>
-        <li class="active"><a href="${ctx}/user/form?id=${user.id}">单表${not empty user.id?'修改':'添加'}查看</a></li>
+        <li class="active"><a href="${ctx}/user/form?id=${user.id}">单表${not empty user.id?'修改':'添加'}</a></li>
     </ul>
     <br/>
     <form:form id="inputForm" modelAttribute="user" action="${ctx}/user/save" method="post" class="form-horizontal">

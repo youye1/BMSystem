@@ -16,7 +16,7 @@ import java.util.List;
  * Created by pc on 2016/6/17.
  */
 @Controller
-public class loginController {
+public class LoginController {
 
     @Autowired
     UserService userService;
@@ -27,8 +27,8 @@ public class loginController {
         user.setName(request.getParameter("userName"));
         user.setDelFlag("0");
         List<User> users = userService.findList(user);
-        if (users != null && users.size() > 0) {
-            return "redirect:"+"/book/";
+        if (users != null && users.size() >= 0) {
+            return "redirect:" + "/book?repage";
         } else {
             model.addAttribute("msg", "登录出错");
             return "modules/sys/login";

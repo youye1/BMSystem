@@ -11,4 +11,5 @@
     <import resource="springConfig-db.xml"/>
     <import resource="springConfig-mybatis.xml"/>
     <import resource="springConfig-jpa.xml"/>
+    <!--<import resource="springConfig-redis.xml"/>-->
 </beans>

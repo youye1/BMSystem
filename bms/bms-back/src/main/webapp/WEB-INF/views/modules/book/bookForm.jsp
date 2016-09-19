@@ -4,7 +4,6 @@
 <head>
     <title>单表管理</title>
     <meta name="decorator" content="default"/>
-    <%@include file="/WEB-INF/views/includes/head.jsp" %>
     <script type="text/javascript">
         $(document).ready(function () {
             //$("#name").focus();
@@ -31,7 +30,7 @@
 
     <ul class="nav nav-tabs">
         <li><a href="${ctx}/book/">单表列表</a></li>
-        <li class="active"><a href="${ctx}/book/form?id=${book.id}">单表${not empty book.id?'修改':'添加'}查看</a></li>
+        <li class="active"><a href="${ctx}/book/form?id=${book.id}">单表${not empty book.id?'修改':'添加'}</a></li>
     </ul>
     <br/>
     <form:form id="inputForm" modelAttribute="book" action="${ctx}/book/save" method="post" class="form-horizontal">
@@ -59,7 +58,12 @@
         <div class="control-group">
             <label class="control-label">类别：</label>
             <div class="controls">
-                <form:input path="type" htmlEscape="false" maxlength="50" class="input-xlarge required"/>
+                <select id="type" name="type">
+                    <c:forEach items="${list}" var="type" varStatus="vs">
+                        <option value="${type.id}">${type.name}</option>
+                    </c:forEach>
+                </select>
+                <%--<form:input path="type" htmlEscape="false" maxlength="50" class="input-xlarge required"/>--%>
                 <span class="help-inline"><font color="red">*</font> </span>
             </div>
         </div>

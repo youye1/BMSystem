@@ -31,7 +31,7 @@
             <li><label>名称：</label>
                 <form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"/>
             </li>
-            <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+            <li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" onclick="return page();"/></li>
             <li class="clearfix"></li>
         </ul>
     </form:form>

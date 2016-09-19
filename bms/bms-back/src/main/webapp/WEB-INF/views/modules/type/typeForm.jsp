@@ -31,12 +31,11 @@
 
     <ul class="nav nav-tabs">
         <li><a href="${ctx}/type/">单表列表</a></li>
-        <li class="active"><a href="${ctx}/type/form?id=${type.id}">单表${not empty type.id?'修改':'添加'}查看</a></li>
+        <li class="active"><a href="${ctx}/type/form?id=${type.id}">单表${not empty type.id?'修改':'添加'}</a></li>
     </ul>
     <br/>
     <form:form id="inputForm" modelAttribute="type" action="${ctx}/type/save" method="post" class="form-horizontal">
         <form:hidden path="id"/>
-        <sys:message content="${message}"/>
         <div class="control-group">
             <label class="control-label">名称：</label>
             <div class="controls">

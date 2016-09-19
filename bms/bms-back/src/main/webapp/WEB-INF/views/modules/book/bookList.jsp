@@ -4,7 +4,6 @@
 <head>
     <title>单表管理</title>
     <meta name="decorator" content="default"/>
-    <%@include file="/WEB-INF/views/includes/head.jsp" %>
     <script type="text/javascript">
         $(document).ready(function () {
 

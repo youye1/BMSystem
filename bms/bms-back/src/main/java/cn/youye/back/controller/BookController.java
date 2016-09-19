@@ -1,7 +1,9 @@
 package cn.youye.back.controller;
 
 import cn.youye.back.entity.Book;
+import cn.youye.back.entity.Type;
 import cn.youye.back.service.BookService;
+import cn.youye.back.service.TypeService;
 import cn.youye.back.sys.common.BaseController;
 import cn.youye.back.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/book")
 public class BookController extends BaseController {
-
     @Autowired
     private BookService bookService;
+    @Autowired
+    TypeService typeService;
 
     @ModelAttribute
     public Book get(@RequestParam(required = false) String id) {
@@ -50,6 +53,8 @@ public class BookController extends BaseController {
 
     @RequestMapping(value = "form")
     public String form(Book book, Model model) {
+        List<Type> list=typeService.findList(new Type());
+        model.addAttribute("list",list);
         model.addAttribute("book", book);
         return "modules/book/bookForm";
     }
