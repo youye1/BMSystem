@@ -1,9 +1,4 @@
-/**
- * Copyright &copy; 2012-2013 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
-package cn.youye.back.utils;
+package cn.youye.back.sys.utils;
 
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -12,10 +7,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 
 /**
  * 以静态变量保存Spring ApplicationContext, 可在任何代码任何地方任何时候取出ApplicaitonContext.
@@ -38,27 +30,6 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 		assertContextInjected();
 		return applicationContext;
 	}
-	
-	public static String getRootRealPath(){
-		String rootRealPath ="";
-		try {
-			rootRealPath=getApplicationContext().getResource("").getFile().getAbsolutePath();
-		} catch (IOException e) {
-			logger.warn("获取系统根目录失败");
-		}
-		return rootRealPath;
-	}
-	
-	public static String getResourceRootRealPath(){
-		String rootRealPath ="";
-		try {
-			rootRealPath=new DefaultResourceLoader().getResource("").getFile().getAbsolutePath();
-		} catch (IOException e) {
-			logger.warn("获取资源根目录失败");
-		}
-		return rootRealPath;
-	}
-	
 
 	/**
 	 * 从静态变量applicationContext中取得Bean, 自动转型为所赋值对象的类型.
@@ -74,7 +45,13 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 	 */
 	public static <T> T getBean(Class<T> requiredType) {
 		assertContextInjected();
-		return applicationContext.getBean(requiredType);
+		try{
+			return applicationContext.getBean(requiredType);
+		}catch(Exception e){
+			logger.debug(e.toString());
+			return null;
+		}
+		
 	}
 
 	/**
@@ -92,12 +69,10 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 	 */
 	public void setApplicationContext(ApplicationContext applicationContext) {
 //		logger.debug("注入ApplicationContext到SpringContextHolder:{}", applicationContext);
-
-		if (SpringContextHolder.applicationContext != null) {
-			logger.info("SpringContextHolder中的ApplicationContext被覆盖, 原有ApplicationContext为:" + SpringContextHolder.applicationContext);
-		}
-
-		SpringContextHolder.applicationContext = applicationContext; // NOSONAR
+//		if (SpringContextHolder.applicationContext != null) {
+//			logger.info("SpringContextHolder中的ApplicationContext被覆盖, 原有ApplicationContext为:" + SpringContextHolder.applicationContext);
+//		}
+		SpringContextHolder.applicationContext = applicationContext;
 	}
 
 	/**

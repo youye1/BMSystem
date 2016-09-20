@@ -14,9 +14,11 @@
         <!-- 数据源-->
         <property name="dataSource" ref="dataSource"/>
         <!-- 加载mybatis的配置文件-->
-        <property name="typeAliasesPackage">
-            <value>cn.youye.back.entity</value>
-        </property>
+        <!--<property name="typeAliasesPackage">-->
+            <!--<value>cn.youye.back.entity</value>-->
+        <!--</property>-->
+        <property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml"/>
+
         <property name="mapperLocations" value="classpath:config/mapper/*.xml"/>
     </bean>
 
